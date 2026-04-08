@@ -6,35 +6,51 @@
     <title>Blog Fetch from Open API</title>
     <link rel="stylesheet" href="shared.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
 
   <body>
     <header class="main-header">
       <h2>BLOG</h2>
 
-      <nav class="main-header__navbar">
+      <nav class="main-header__navbar" id="navbar">
         <ul>
           <li><a href="#">HOME</a></li>
           <li><a href="#">BLOG</a></li>
           <li><a href="#">ABOUT</a></li>
-          <li><a href="#">CONTACT</a></li>
         </ul>
       </nav>
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
     </header>
 
-    <main class="main-content"></main>
+    <main class="main-content">
+      <h2>My Tech. Blog</h2>
+
+      <div class="action-buttons">
+        <button id="getBtn" class="btn btn-accent">GET Blogs</button>
+        <button id="postBtn" class="btn btn-primary">POST Blog</button>
+      </div>
+      <div class="blog-container"></div>
+    </main>
 
     <footer class="footer-links">
       <ul>
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">BLOG</a></li>
-        <li><a href="#">ABOUT</a></li>
-        <li><a href="#">CONTACT</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Support</a></li>
       </ul>
 
       <p>&copy; 2026 Blog. All rights reserved.</p>
     </footer>
-
-    <script src="main.js"></script>
+    <script src="script.js"></script>
+    <script src="get.js"></script>
+    <script src="post.js"></script>
+    <script src="put.js"></script>
+    <script src="delete.js"></script>
   </body>
 </html>
