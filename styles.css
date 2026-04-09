@@ -168,3 +168,56 @@
 .btn:hover {
   filter: brightness(1.1);
 }
+.form-container {
+  background: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px gray;
+  text-align: center;
+  margin:  10px 660px;
+}
+.form-container h3{
+  color:  hsl(210, 70%, 50%);
+  font-size: 1.5rem;
+
+}
+#formContainer {
+  display: none;
+}
+
+input, textarea {
+  width: 200px;
+  padding: 8px;
+}
+
+.add-blog {
+  padding: 10px 12px;
+  cursor: pointer;
+  margin: 5px 60px;
+  background:  hsl(140, 60%, 45%);
+  border-radius: 10px;
+  color: white;
+  border: none;
+}
+.add-blog:hover{
+  background:  hsl(140, 60%, 25%);
+}
+@media (max-width: 600px) {
+
+  .form-container {
+    width: 90%;            
+    margin: 20px auto;   
+    padding: 15px;
+  }
+
+  input, textarea {
+    width: 100%;            
+  }
+
+  .add-blog {
+    width: 100%;             
+    margin: 10px 0;         
+  }
+
+}

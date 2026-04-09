@@ -114,3 +114,50 @@ async function deleteblog(id) {
   }
 
 }
+
+let isFormOpen = false;
+document.getElementById("postBtn").onclick = function () {
+  document.getElementById("formContainer").style.display = "block";
+};
+
+
+document.getElementById("blogForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  let title = document.getElementById("title").value;
+  let content = document.getElementById("content").value;
+
+  if (title === "" || content === "") {
+    alert("Please fill all fields");
+    return;
+  }
+
+  let product = {
+    title: title,
+    content: content
+  };
+
+  fetch("https://test.spensol.com/posts/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(product)
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Success:", data);
+      alert("Post Added Successfully!");
+      document.getElementById("formContainer");
+
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
+
+  
+  document.getElementById("title").value = "";
+  document.getElementById("content").value = "";
+  
+ 
+});
