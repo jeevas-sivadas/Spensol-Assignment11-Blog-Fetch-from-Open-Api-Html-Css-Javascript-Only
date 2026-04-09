@@ -32,7 +32,7 @@ function renderBlogs(data) {
 
           <div class="card-buttons">
             <button type="button" class="edit-btn btn btn-edit">Edit</button>
-            <button type="button" class="delete-btn btn btn-delete">Delete</button>
+            <button type="button" class="delete-btn btn btn-delete"  onclick="deleteblog(${post.id})">Delete</button>
           </div>
         </div>
       `,
@@ -87,4 +87,31 @@ async function fetchById() {
   } catch (err) {
     blogContainer.innerHTML = `<p>${err.message}</p>`;
   }
+}
+
+
+async function deleteblog(id) {
+
+  let confirmDelete = confirm("Are you sure you want to delete this blog?");
+  if (!confirmDelete) return;
+
+  try {
+
+    const response = await fetch(`https://test.spensol.com/posts/${id}`, {
+      method: "DELETE"
+    });
+
+    if (!response.ok) {
+      throw new Error("Delete failed");
+    }
+
+    alert("Blog deleted successfully");
+
+    getBlogs(); 
+
+  } catch (error) {
+    console.log(error);
+    alert("Failed to delete blog");
+  }
+
 }
