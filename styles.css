@@ -1,7 +1,10 @@
 :root {
-  --primary: hsl(225, 73%, 57%);
-  --accent: hsl(16, 80%, 56%);
-  --text: hsl(0, 3%, 45%);
+  --primary: hsl(210, 70%, 50%);
+  --secondary: hsl(160, 45%, 45%);
+  --accent: hsl(30, 90%, 55%);
+  --third: hsl(0, 70%, 50%);
+  --fourth: hsl(140, 60%, 45%);
+  --text: hsl(0, 0%, 20%);
   --background: linear-gradient(to right, hsl(0, 68%, 73%), hsl(103, 76%, 56%));
   --card-padding: 1rem;
   --border-radius: 0.75rem;
@@ -29,7 +32,32 @@
   flex-wrap: wrap;
   padding: 1rem;
 }
+.search-box {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
 
+.search-box input {
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.5rem;
+  border: 0.1rem solid #ccc;
+  font-size: 0.9rem;
+  outline: none;
+  min-width: 12rem;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
+}
+
+.search-box button {
+  white-space: nowrap;
+}
 .blog-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -61,6 +89,7 @@
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
   word-break: break-word;
+  color: var(--text);
 }
 
 .card .card-buttons {
@@ -81,53 +110,61 @@
   text-align: center;
   transition: all 0.3s ease;
   white-space: nowrap;
+  color: #ffffff;
 }
 
 .btn-primary {
-  background: var(--primary);
-  color: white;
+  background: var(--fourth);
 }
 
 .btn-primary:hover {
-  background: #3558c9;
+  background: hsl(140, 60%, 35%);
+  transform: translateY(-0.1rem);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+}
+
+.btn-secondary:hover {
+  background: hsl(160, 45%, 35%);
   transform: translateY(-0.1rem);
 }
 
 .btn-accent {
   background: var(--accent);
-  color: white;
 }
 
 .btn-accent:hover {
-  background: #e03e00;
+  background: hsl(30, 90%, 45%);
+  transform: translateY(-0.1rem);
+}
+
+.btn-third {
+  background: var(--third);
+}
+
+.btn-third:hover {
+  background: hsl(280, 40%, 45%);
   transform: translateY(-0.1rem);
 }
 
 .btn-edit {
-  background: #28a745;
-  color: white;
+  background: var(--secondary);
 }
 
 .btn-edit:hover {
-  background: #218838;
+  background: hsl(160, 45%, 35%);
 }
 
 .btn-delete {
-  background: #dc3545;
-  color: white;
+  background: var(--third);
 }
 
 .btn-delete:hover {
-  background: #b02a37;
+  background: hsl(0, 70%, 35%);
 }
 
-.btn-outline {
-  background: transparent;
-  border: 0.1rem solid var(--primary);
-  color: var(--primary);
-}
-
-.btn-outline:hover {
-  background: var(--primary);
-  color: white;
+.btn:hover {
+  filter: brightness(1.1);
 }
