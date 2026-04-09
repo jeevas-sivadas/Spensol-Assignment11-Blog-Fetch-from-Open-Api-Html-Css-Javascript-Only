@@ -89,8 +89,6 @@ async function fetchById() {
   }
 }
 
-
-
 async function deleteblog(id) {
 
   let confirmDelete = confirm("Are you sure you want to delete this blog?");
