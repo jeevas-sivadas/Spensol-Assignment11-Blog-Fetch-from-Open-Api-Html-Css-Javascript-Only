@@ -59,3 +59,32 @@ async function getBlogs() {
 }
 
 getBtn.addEventListener("click", getBlogs);
+
+const searchBtn = document.getElementById("searchBtn");
+
+searchBtn.addEventListener("click", fetchById);
+
+async function fetchById() {
+  const id = document.getElementById("searchId").value;
+
+  if (!id) {
+    blogContainer.innerHTML = "<p>Please enter an ID</p>";
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://test.spensol.com/posts/${id}`);
+    if (!res.ok) throw new Error("Blog not found");
+
+    const post = await res.json();
+
+    blogContainer.innerHTML = `
+      <div class="card">
+        <h3>${post.title}</h3>
+        <p>${post.content}</p>
+      </div>
+    `;
+  } catch (err) {
+    blogContainer.innerHTML = `<p>${err.message}</p>`;
+  }
+}
