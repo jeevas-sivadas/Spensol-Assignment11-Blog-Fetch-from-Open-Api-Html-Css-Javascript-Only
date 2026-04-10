@@ -90,14 +90,12 @@ async function fetchById() {
 }
 
 async function deleteblog(id) {
-
   let confirmDelete = confirm("Are you sure you want to delete this blog?");
   if (!confirmDelete) return;
 
   try {
-
     const response = await fetch(`https://test.spensol.com/posts/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
     });
 
     if (!response.ok) {
@@ -106,63 +104,59 @@ async function deleteblog(id) {
 
     alert("Blog deleted successfully");
 
-    getBlogs(); 
-
+    getBlogs();
   } catch (error) {
     console.log(error);
     alert("Failed to delete blog");
   }
-
 }
 
 let isFormOpen = false;
+
 document.getElementById("postBtn").onclick = function () {
   document.getElementById("formContainer").style.display = "block";
 };
 
+document
+  .getElementById("blogForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
 
-document.getElementById("blogForm").addEventListener("submit", function (event) {
-  event.preventDefault();
+    let title = document.getElementById("title").value;
+    let content = document.getElementById("content").value;
 
-  let title = document.getElementById("title").value;
-  let content = document.getElementById("content").value;
+    if (title === "" || content === "") {
+      alert("Please fill all fields");
+      return;
+    }
 
-  if (title === "" || content === "") {
-    alert("Please fill all fields");
-    return;
-  }
+    let product = {
+      title: title,
+      content: content,
+    };
 
-  let product = {
-    title: title,
-    content: content
-  };
-
-  fetch("https://test.spensol.com/posts/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(product)
-  })
-    .then(response => response.json())
-    .then(data => {
-      console.log("Success:", data);
-      alert("Post Added Successfully!");
-      getBlogs();
-      document.getElementById("formContainer");
-
+    fetch("https://test.spensol.com/posts/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(product),
     })
-    .catch(error => {
-      console.error("Error:", error);
-    });
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        alert("Post Added Successfully!");
+        getBlogs();
 
-  
-  document.getElementById("title").value = "";
-  document.getElementById("content").value = "";
-  
- 
-});
+        document.getElementById("formContainer").style.display = "none"; // ✅ hide form
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
 
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+  });
 
 async function updateBlog(id, updatedData) {
   try {
