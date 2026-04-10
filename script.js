@@ -148,6 +148,7 @@ document.getElementById("blogForm").addEventListener("submit", function (event) 
     .then(data => {
       console.log("Success:", data);
       alert("Post Added Successfully!");
+      getBlogs();
       document.getElementById("formContainer");
 
     })
@@ -160,4 +161,76 @@ document.getElementById("blogForm").addEventListener("submit", function (event) 
   document.getElementById("content").value = "";
   
  
+});
+
+
+async function updateBlog(id, updatedData) {
+  try {
+    const response = await fetch(`https://test.spensol.com/posts/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+      throw new Error("Update failed");
+    }
+
+    const data = await response.json();
+    alert("Blog updated successfully!");
+    getBlogs();
+  } catch (error) {
+    console.error(error);
+    alert("Failed to update blog");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  let currentEditId = null;
+
+  const dialog = document.getElementById("editDialog");
+  const editTitle = document.getElementById("editTitle");
+  const editContent = document.getElementById("editContent");
+  const saveBtn = document.getElementById("saveEdit");
+  const cancelBtn = document.getElementById("cancelEdit");
+
+  // OPEN dialog
+  blogContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("edit-btn")) {
+      const card = e.target.closest(".card");
+
+      const id = card.querySelector("p strong").nextSibling.textContent.trim();
+      const title = card.querySelector("h3").textContent;
+      const content = card.querySelectorAll("p")[0].textContent;
+
+      currentEditId = id;
+
+      editTitle.value = title;
+      editContent.value = content;
+
+      dialog.style.display = "flex";
+    }
+  });
+
+  // SAVE button
+  saveBtn.addEventListener("click", () => {
+    console.log("SAVE CLICKED");
+
+    const updatedData = {
+      title: editTitle.value,
+      content: editContent.value,
+    };
+
+    updateBlog(currentEditId, updatedData);
+
+    dialog.style.display = "none";
+  });
+
+  // CANCEL button
+  cancelBtn.addEventListener("click", () => {
+    console.log("CANCEL CLICKED");
+    dialog.style.display = "none";
+  });
 });
