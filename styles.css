@@ -6,6 +6,7 @@
   --fourth: hsl(140, 60%, 45%);
   --text: hsl(0, 0%, 20%);
   --background: linear-gradient(to right, hsl(0, 68%, 73%), hsl(103, 76%, 56%));
+
   --card-padding: 1rem;
   --border-radius: 0.75rem;
   --btn-padding: 0.6rem 1.2rem;
@@ -15,7 +16,7 @@
 
 .main-content {
   padding: 2rem;
-  height: 100%;
+  min-height: 100vh;
 }
 
 .main-content h2 {
@@ -25,19 +26,13 @@
   font-size: 2rem;
 }
 
-.action-buttons {
+.action-buttons,
+.search-box {
   display: flex;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
   padding: 1rem;
-}
-.search-box {
-  display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 1rem;
-  flex-wrap: wrap;
 }
 
 .search-box input {
@@ -52,12 +47,9 @@
 
 .search-box input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.1);
 }
 
-.search-box button {
-  white-space: nowrap;
-}
 .blog-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
@@ -69,14 +61,15 @@
   background: var(--background);
   padding: var(--card-padding);
   border-radius: var(--border-radius);
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  box-shadow: 0 0.3rem 0.7rem rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-0.3rem);
+  transform: translateY(-0.4rem);
+  box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.15);
 }
 
 .card h3 {
@@ -92,7 +85,7 @@
   color: var(--text);
 }
 
-.card .card-buttons {
+.card-buttons {
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
@@ -100,17 +93,14 @@
 }
 
 .btn {
-  display: inline-block;
   padding: var(--btn-padding);
-  font-size: 0.9rem;
-  font-weight: bold;
+  font-size: 0.85rem;
+  font-weight: 600;
   border-radius: 0.5rem;
   border: none;
   cursor: pointer;
-  text-align: center;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  color: #ffffff;
+  transition: all 0.25s ease;
+  color: #fff;
 }
 
 .btn-primary {
@@ -145,7 +135,7 @@
 }
 
 .btn-third:hover {
-  background: hsl(280, 40%, 45%);
+  background: hsl(0, 70%, 35%);
   transform: translateY(-0.1rem);
 }
 
@@ -155,6 +145,7 @@
 
 .btn-edit:hover {
   background: hsl(160, 45%, 35%);
+  transform: translateY(-0.1rem);
 }
 
 .btn-delete {
@@ -163,65 +154,54 @@
 
 .btn-delete:hover {
   background: hsl(0, 70%, 35%);
+  transform: translateY(-0.1rem);
 }
 
-.btn:hover {
-  filter: brightness(1.1);
-}
 .form-container {
-  background: white;
-  padding: 20px;
-  width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px gray;
+  background: #fff;
+  padding: var(--form-padding);
+  width: 100%;
+  max-width: 20rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 0.7rem rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin:  10px 580px;
+  margin: 1rem auto;
 }
-.form-container h3{
-  color:  hsl(210, 70%, 50%);
-  font-size: 1.5rem;
 
+.form-container h3 {
+  color: var(--primary);
+  font-size: 1.4rem;
 }
+
 #formContainer {
   display: none;
 }
 
-input, textarea {
-  width: 200px;
-  padding: 8px;
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border-radius: 0.4rem;
+  border: 0.1rem solid #ccc;
+  font-size: 0.9rem;
 }
 
 .add-blog {
-  padding: 10px 12px;
+  padding: 0.6rem 1rem;
   cursor: pointer;
-  margin: 5px 60px;
-  background:  hsl(140, 60%, 45%);
-  border-radius: 10px;
-  color: white;
+  margin-top: 0.5rem;
+  background: var(--fourth);
+  border-radius: 0.5rem;
+  color: #fff;
   border: none;
-}
-.add-blog:hover{
-  background:  hsl(140, 60%, 25%);
-}
-@media (max-width: 600px) {
-
-  .form-container {
-    width: 90%;            
-    margin: 20px auto;   
-    padding: 15px;
-  }
-
-  input, textarea {
-    width: 100%;            
-  }
-
-  .add-blog {
-    width: 100%;             
-    margin: 10px 0;         
-  }
-
+  font-size: 0.9rem;
 }
 
+.add-blog:hover {
+  background: hsl(140, 60%, 30%);
+  transform: translateY(-0.1rem);
+}
 
 .dialog-backdrop {
   position: fixed;
@@ -233,45 +213,74 @@ input, textarea {
   display: none;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 10;
 }
 
 .dialog-box {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  width: 350px;
-  color: white;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  background: #fff;
+  padding: var(--modal-padding);
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 22rem;
+  color: var(--text);
+  box-shadow: 0 0.8rem 1.8rem rgba(0, 0, 0, 0.3);
   animation: popIn 0.3s ease;
 }
 
 .dialog-box h2 {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   text-align: center;
-   color:  hsl(210, 70%, 50%);
+  color: var(--primary);
 }
 
 .dialog-box input,
 .dialog-box textarea {
   width: 100%;
-  margin: 10px 0;
-  padding: 8px;
-  border-radius: 6px;
+  margin: 0.5rem 0;
+  padding: 0.6rem;
 }
 
 .dialog-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 0.5rem;
 }
 
 @keyframes popIn {
   from {
-    transform: scale(0.8);
+    transform: scale(0.85);
     opacity: 0;
   }
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@media (max-width: 30rem) {
+  .main-content {
+    padding: 1rem;
+  }
+
+  .main-content h2 {
+    font-size: 1.4rem;
+  }
+
+  .btn {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .search-box input {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .blog-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 0.8rem;
   }
 }
