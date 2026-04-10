@@ -175,7 +175,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px gray;
   text-align: center;
-  margin:  10px 660px;
+  margin:  10px 580px;
 }
 .form-container h3{
   color:  hsl(210, 70%, 50%);
@@ -220,4 +220,58 @@ input, textarea {
     margin: 10px 0;         
   }
 
+}
+
+
+.dialog-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+
+.dialog-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  width: 350px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  animation: popIn 0.3s ease;
+}
+
+.dialog-box h2 {
+  margin-bottom: 10px;
+  text-align: center;
+   color:  hsl(210, 70%, 50%);
+}
+
+.dialog-box input,
+.dialog-box textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
