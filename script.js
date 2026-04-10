@@ -190,7 +190,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const saveBtn = document.getElementById("saveEdit");
   const cancelBtn = document.getElementById("cancelEdit");
 
-  // OPEN dialog
   blogContainer.addEventListener("click", function (e) {
     if (e.target.classList.contains("edit-btn")) {
       const card = e.target.closest(".card");
@@ -208,7 +207,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // SAVE button
   saveBtn.addEventListener("click", () => {
     console.log("SAVE CLICKED");
 
@@ -222,7 +220,6 @@ document.addEventListener("DOMContentLoaded", function () {
     dialog.style.display = "none";
   });
 
-  // CANCEL button
   cancelBtn.addEventListener("click", () => {
     console.log("CANCEL CLICKED");
     dialog.style.display = "none";
