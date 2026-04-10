@@ -32,7 +32,7 @@ function renderBlogs(data) {
 
           <div class="card-buttons">
             <button type="button" class="edit-btn btn btn-edit">Edit</button>
-            <button type="button" class="delete-btn btn btn-delete"  onclick="deleteblog(${post.id})">Delete</button>
+            <button type="button" class="delete-btn btn btn-delete"  onclick="deleteBlog(${post.id})">Delete</button>
           </div>
         </div>
       `,
@@ -89,7 +89,7 @@ async function fetchById() {
   }
 }
 
-async function deleteblog(id) {
+async function deleteBlog(id) {
   let confirmDelete = confirm("Are you sure you want to delete this blog?");
   if (!confirmDelete) return;
 
